@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6조 서버·Kiro 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  --night:#F6F8F4; --canopy:#E4EDE6; --moss:#7FA392; --mist:#55695F; --paper:#0B1D1A;
+  --lantern:#B86E12; --sign:#2F7D50; --card:#FFFFFF; --code:#EEF3EF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --night:#0B1D1A; --canopy:#173A31; --moss:#4F7D68; --mist:#B9C9C1; --paper:#F2F5F0;
+    --lantern:#F1B35C; --sign:#93D3A2; --card:#122C26; --code:#0F2621;
+  }
+}
+* { box-sizing:border-box; }
+html { background:var(--night); }
+body { margin:0; background:var(--night); color:var(--paper);
+  font-family:"Pretendard","Malgun Gothic",-apple-system,"Segoe UI",sans-serif; line-height:1.6; font-size:15px; }
+.wrap { max-width:860px; margin:0 auto; padding:40px 24px 72px; }
+code { font-family:Consolas,"SFMono-Regular",Menlo,monospace; font-size:.9em; }
+header { display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+  padding-bottom:18px; border-bottom:1px dashed var(--moss); }
+.tag { font-family:"Syncopate","Poppins",sans-serif; font-size:11px; letter-spacing:.35em; color:var(--mist); text-transform:uppercase; }
+h1 { font-size:30px; font-weight:700; margin:6px 0 2px; }
+.sub { color:var(--mist); margin:0; }
+.team { font-family:"Poppins",sans-serif; font-weight:300; font-size:56px; line-height:1; color:var(--sign); white-space:nowrap; }
+.team small { font-size:20px; font-family:"Pretendard",sans-serif; font-weight:700; margin-left:2px; color:var(--paper); }
+h2 { font-size:18px; font-weight:700; margin:40px 0 12px; display:flex; align-items:center; gap:10px; }
+h2 .n { font-family:"Poppins",sans-serif; font-weight:300; color:var(--sign); font-size:20px; min-width:26px; }
+h2::after { content:""; flex:1; border-bottom:1px dashed var(--moss); opacity:.7; }
+p { margin:8px 0; }
+a { color:var(--sign); font-weight:600; }
+.card { background:var(--card); border:1px solid var(--canopy); border-left:3px solid var(--moss);
+  padding:16px 18px; border-radius:3px; box-shadow:3px 3px 0 var(--canopy); }
+.steps { list-style:none; padding:16px 18px; margin:0; counter-reset:s; display:grid; gap:12px; }
+.steps li { counter-increment:s; display:grid; grid-template-columns:34px 1fr; gap:6px; align-items:start; }
+.steps li::before { content:counter(s,decimal-leading-zero); font-family:"Poppins",sans-serif; font-weight:300; color:var(--sign); font-size:18px; line-height:1.4; }
+table { border-collapse:collapse; width:100%; }
+th { text-align:left; font-weight:600; color:var(--mist); font-size:13px; padding:8px 10px; border-bottom:1px solid var(--moss); }
+td { padding:9px 10px; border-bottom:1px solid var(--canopy); vertical-align:top; }
+tr:last-child td { border-bottom:none; }
+.kv td:first-child { color:var(--mist); width:24%; white-space:nowrap; }
+td.nw, td.nw .copyable { white-space:nowrap; flex-wrap:nowrap; }
+.chip { display:inline-block; border:1px solid var(--moss); border-radius:999px; padding:0 10px; font-size:12px; color:var(--mist); }
+.chip.on { border-color:var(--sign); color:var(--sign); }
+.copyable { display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; max-width:100%; }
+.copyable code { background:var(--code); padding:2px 7px; border-radius:3px; word-break:break-all; }
+button.cp { font:inherit; font-size:12px; color:var(--sign); background:transparent; border:1px solid var(--sign);
+  border-radius:999px; padding:0 10px; cursor:pointer; line-height:1.7; }
+button.cp:hover { background:var(--sign); color:var(--night); }
+.prompt { position:relative; background:var(--code); border:1px solid var(--canopy); border-left:3px solid var(--sign);
+  border-radius:3px; padding:16px 18px; white-space:pre-wrap; font-family:Consolas,Menlo,monospace; font-size:13px; line-height:1.7; }
+.prompt button.cp { position:absolute; top:10px; right:10px; background:var(--night); }
+.lantern { border:1px solid var(--lantern); border-left:3px solid var(--lantern); padding:14px 18px; border-radius:3px; margin-top:28px; }
+.lantern b { color:var(--lantern); }
+ul.dots { padding-left:18px; margin:6px 0; } ul.dots li { margin:7px 0; }
+.muted { color:var(--mist); font-size:13px; }
+footer { margin-top:48px; padding-top:14px; border-top:1px dashed var(--moss); color:var(--mist); font-size:12px;
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; font-family:"Poppins","Pretendard",sans-serif; }
+@media (max-width:600px) { .wrap { padding:28px 16px 56px; } .team { font-size:40px; } h1 { font-size:24px; } .kv td:first-child { white-space:normal; } }
+</style></head><body><div class="wrap">
+
+<header>
+  <div><div class="tag">JNU AI Hackathon · 2026</div>
+  <h1>서버 · Kiro 안내</h1><p class="sub">이 한 장만 보면 됩니다. 막히면 멘토·운영진을 불러주세요.</p></div>
+  <div class="team">06<small>조</small></div>
+</header>
+
+<h2><span class="n">01</span>처음 할 일</h2>
+<ol class="steps card">
+  <li><div><b>Kiro 설치·첫 설정</b> — <a href="https://light-trapezoid-9bf.notion.site/Kiro-36406b6b2db080528843f0f24408ce7d?pvs=74" target="_blank">Kiro 처음 설정하기 (Notion)</a>를 따라 하세요.<br>
+  <span class="muted">Start URL</span> <span class="copyable"><code id="c13">https://tbitcloud.awsapps.com/start</code><button class="cp" data-target="c13">복사</button></span> &nbsp;<span class="muted">리전</span> <span class="copyable"><code id="c14">us-east-1</code><button class="cp" data-target="c14">복사</button></span></div></li>
+  <li><div>아래 <b>우리 조 Kiro 계정</b>의 아이디·임시 비밀번호로 로그인하고, 바로 새 비밀번호로 바꾸세요.</div></li>
+  <li><div>특강에서 받는 공통 템플릿 폴더를 Kiro에서 엽니다 (<b>File → Open Folder</b> → 최상위 폴더).</div></li>
+  <li><div>아래 <b>Kiro 첫 요청 예시</b>를 붙여넣으세요. 그다음은 특강 슬라이드 순서대로 진행합니다.</div></li>
+</ol>
+
+<h2><span class="n">02</span>우리 조 Kiro 계정</h2>
+<div class="card"><table><tr><th>이름</th><th>Kiro 아이디</th><th>임시 비밀번호</th></tr><tr><td class="nw">이소민</td><td class="nw"><span class="copyable"><code id="c1">JnuAI22</code><button class="cp" data-target="c1">복사</button></span></td><td><span class="copyable"><code id="c2">Qg)&gt;i!PO&amp;s%8</code><button class="cp" data-target="c2">복사</button></span></td></tr><tr><td class="nw">최윤서</td><td class="nw"><span class="copyable"><code id="c3">JnuAI23</code><button class="cp" data-target="c3">복사</button></span></td><td><span class="copyable"><code id="c4">dF2CTTGvyi5$BV&amp;f</code><button class="cp" data-target="c4">복사</button></span></td></tr><tr><td class="nw">윤준식</td><td class="nw"><span class="copyable"><code id="c5">JnuAI27</code><button class="cp" data-target="c5">복사</button></span></td><td><span class="copyable"><code id="c6">D2*B1?WKgt7VGf</code><button class="cp" data-target="c6">복사</button></span></td></tr></table>
+<p class="muted">임시 비밀번호는 길이가 제각각이라 복사 버튼을 쓰세요. 첫 로그인 뒤에는 본인이 정한 비밀번호로 로그인합니다.</p></div>
+
+<h2><span class="n">03</span>Kiro 첫 요청 예시</h2>
+<div class="prompt"><button class="cp" data-target="first-prompt">복사</button><span id="first-prompt">이 프로젝트의 .kiro/steering과 README를 읽고,
+로컬 실행 방법과 수정 가능한 파일을 확인해 주세요.
+기존 규칙은 유지하고 아직 코드는 수정하지 말아 주세요.
+
+우리 팀 정보 (확인만 하고 지금 서버 작업은 하지 마세요):
+- 우리는 6조이고, 팀 서버는 52.89.185.105 입니다.
+- 로컬은 mock AI로 개발하고, 실제 AI 결과는 통합 담당자가
+  scripts/deploy.ps1로 Check → Deploy 한 뒤 팀 서버에서 확인합니다.
+- PEM은 프로젝트 바깥 $HOME\hackathon-e4-t06.pem 에 있습니다. 경로만 쓰고 내용은 읽지 마세요.
+- 파일 저장이 필요하면 S3 버킷 hackathon-e4-t06-data 하나만 씁니다.</span></div>
+
+<h2><span class="n">04</span>우리 조 서버</h2>
+<div class="card"><table class="kv">
+<tr><td>공인 IP</td><td><span class="copyable"><code id="c15">52.89.185.105</code><button class="cp" data-target="c15">복사</button></span> <span class="chip">오리건 · us-west-2</span></td></tr>
+<tr><td>접속 키</td><td><code>hackathon-e4-t06.pem</code> — 내 사용자 폴더(<code>C:\Users\내 이름</code>)로 옮겨서 씁니다. 프로젝트 안에 넣으면 배포가 거부됩니다.<br>
+<span class="muted">받은 <code>6조</code> 폴더에서 주소창에 <code>powershell</code> 입력 → 엔터 → 실행</span><br><span class="copyable"><code id="c16">Copy-Item .\hackathon-e4-t06.pem $HOME</code><button class="cp" data-target="c16">복사</button></span><br>
+<span class="muted">처음 한 번 키 권한 정리 (안 하면 <code>bad permissions</code>로 접속이 안 됩니다)</span><br><span class="copyable"><code id="c17">icacls $HOME\hackathon-e4-t06.pem /inheritance:r /grant:r &quot;${env:USERNAME}:R&quot;</code><button class="cp" data-target="c17">복사</button></span></td></tr>
+<tr><td>처음 한 번 접속</td><td><span class="copyable"><code id="c18">ssh -i $HOME\hackathon-e4-t06.pem ubuntu@52.89.185.105 hostname</code><button class="cp" data-target="c18">복사</button></span><br><span class="muted">질문이 나오면 <code>yes</code> 입력. 이걸 안 하면 배포가 <code>Host key verification failed</code>로 멈춥니다.</span></td></tr>
+<tr><td>배포 검사</td><td><span class="copyable"><code id="c19">.\scripts\deploy.ps1 -ServerHost 52.89.185.105 -KeyPath $HOME\hackathon-e4-t06.pem -Mode Check</code><button class="cp" data-target="c19">복사</button></span></td></tr>
+<tr><td>배포</td><td><span class="copyable"><code id="c20">.\scripts\deploy.ps1 -ServerHost 52.89.185.105 -KeyPath $HOME\hackathon-e4-t06.pem -Mode Deploy</code><button class="cp" data-target="c20">복사</button></span></td></tr>
+<tr><td>서버 화면 보기</td><td><span class="copyable"><code id="c21">ssh -i $HOME\hackathon-e4-t06.pem -N -L 127.0.0.1:18080:127.0.0.1:8080 ubuntu@52.89.185.105</code><button class="cp" data-target="c21">복사</button></span><br>
+<span class="muted">창을 켜 둔 채 브라우저에서 <code>http://127.0.0.1:18080</code> → 웹 계정 아이디 <code>team06</code> (비밀번호는 운영진 안내)</span></td></tr>
+<tr><td>파일 저장소</td><td><span class="copyable"><code id="c22">hackathon-e4-t06-data</code><button class="cp" data-target="c22">복사</button></span><br><span class="muted">이 버킷 하나만 씁니다. 안에서 폴더로 나눠 쓰세요 (예: uploads/, data/, outputs/)</span></td></tr>
+</table>
+<p class="muted">키 옮기기 다음 명령들은 Kiro 터미널(템플릿 최상위 폴더)에서 실행합니다. 배포는 조의 <b>통합 담당자 한 명</b>만 합니다.</p></div>
+
+<h2><span class="n">05</span>쓸 수 있는 AI 모델</h2>
+<div class="card"><table><tr><th>모델</th><th>모델 ID</th></tr><tr><td>Claude Haiku 4.5 <span class="chip on">기본값 · 실습 모델</span></td><td><span class="copyable"><code id="c7">global.anthropic.claude-haiku-4-5-20251001-v1:0</code><button class="cp" data-target="c7">복사</button></span></td></tr><tr><td>Claude Sonnet 5.5</td><td><span class="copyable"><code id="c8">global.anthropic.claude-sonnet-5-5</code><button class="cp" data-target="c8">복사</button></span></td></tr><tr><td>Claude Sonnet 5</td><td><span class="copyable"><code id="c9">global.anthropic.claude-sonnet-5</code><button class="cp" data-target="c9">복사</button></span></td></tr><tr><td>Claude Sonnet 4.6</td><td><span class="copyable"><code id="c10">global.anthropic.claude-sonnet-4-6</code><button class="cp" data-target="c10">복사</button></span></td></tr><tr><td>GPT-6 Sol</td><td><span class="copyable"><code id="c11">global.openai.gpt-6-sol</code><button class="cp" data-target="c11">복사</button></span></td></tr><tr><td>GPT-5.6 Sol</td><td><span class="copyable"><code id="c12">global.openai.gpt-5.6-sol</code><button class="cp" data-target="c12">복사</button></span></td></tr></table>
+<p class="muted">앱에서는 공통 API(<code>/api/ai/generate</code>)로 부릅니다. 한도는 분당 20회 · 하루 600회, 응답 최대 256토큰입니다. 내 PC에서는 모의 응답(mock)만 나오고, 실제 AI 결과는 팀 서버에서 확인합니다.</p></div>
+
+<h2><span class="n">06</span>알아둘 것</h2>
+<ul class="dots">
+<li>AWS 액세스 키는 만들지 않습니다. 팀 서버에 권한이 붙어 있어서 Bedrock·S3가 키 없이 됩니다.</li>
+<li>새 패키지나 추가 AWS 서비스가 필요하면 멘토에게 신청합니다.</li>
+<li>AWS 콘솔이 꼭 필요할 때만: <a href="https://tbit-edu-aws-01.signin.aws.amazon.com/console" target="_blank">콘솔 로그인</a> · 아이디 <span class="copyable"><code id="c23">hackathon-e4-t06</code><button class="cp" data-target="c23">복사</button></span> · 초기 비밀번호 <span class="copyable"><code id="c24">DUT!B8YBwCZz</code><button class="cp" data-target="c24">복사</button></span><br>
+<span class="muted">첫 로그인 때 새 비밀번호로 바꾸고 조원끼리 공유하세요. 서버 시작·중지·재부팅, 파일 저장소, Bedrock 플레이그라운드만 됩니다.</span></li>
+</ul>
+
+<div class="lantern"><b>10월 31일(토) 20:00에 서버와 계정이 모두 삭제됩니다.</b> 코드는 PC 프로젝트 폴더나 GitHub에 꼭 남겨두세요.</div>
+
+<footer><span>전남대학교 AI 기반 지역사회 문제해결톤</span><span>TEAM 06 · us-west-2</span></footer>
+</div><script>
+document.querySelectorAll('button.cp').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var t = document.getElementById(b.dataset.target).innerText;
+    navigator.clipboard.writeText(t).then(function () {
+      var o = b.innerText; b.innerText = '복사됨'; setTimeout(function () { b.innerText = o; }, 1200);
+    });
+  });
+});
+</script></body></html>

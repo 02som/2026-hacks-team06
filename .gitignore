@@ -1,0 +1,5 @@
+node_modules/
+*.log
+.env
+# 접속 키는 절대 커밋하지 않음 (프로젝트 바깥 $HOME 에 두는 것이 원칙)
+*.pem

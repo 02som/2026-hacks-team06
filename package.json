@@ -1,0 +1,16 @@
+{
+  "name": "itzawon",
+  "version": "0.1.0",
+  "description": "잇자원 - 지역 자원순환·자활 매칭 플랫폼 (해커톤 6조)",
+  "type": "module",
+  "main": "src/local-server.js",
+  "scripts": {
+    "dev": "node src/local-server.js",
+    "start": "node src/local-server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
